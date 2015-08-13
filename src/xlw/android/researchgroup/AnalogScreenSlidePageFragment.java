@@ -179,7 +179,8 @@ public class AnalogScreenSlidePageFragment extends Fragment {
         });
         
         
-        Button button_add = (Button) rootView.findViewById(R.id.add);
+        final Button button_add = (Button) rootView.findViewById(R.id.add);
+        final Button button_delete = (Button) rootView.findViewById(R.id.delete);
                 
         button_add.setOnClickListener(new OnClickListener()
         {
@@ -187,6 +188,8 @@ public class AnalogScreenSlidePageFragment extends Fragment {
         	  public void onClick(View v)
         	  {
         	    // do something
+        		button_add.setVisibility(View.GONE);
+              	button_delete.setVisibility(View.VISIBLE);
         		Favorite favorite = null;
         		System.out.println("ADD");
         	    Log.v(TAG, "ADD");
@@ -201,13 +204,15 @@ public class AnalogScreenSlidePageFragment extends Fragment {
         	  } 
         }); 
         
-        Button button_delete = (Button) rootView.findViewById(R.id.delete);
+        
         button_delete.setOnClickListener(new OnClickListener()
         {
         	  @Override
         	  public void onClick(View v)
         	  {
         	    // do something
+        		button_delete.setVisibility(View.GONE);
+              	button_add.setVisibility(View.VISIBLE);
         		Cursor cursor=null;
         		System.out.println("DELETE");
         	    Log.v(TAG, "DELETE");
@@ -223,10 +228,12 @@ public class AnalogScreenSlidePageFragment extends Fragment {
         
         Cursor name_cursor=MainActivity.datasource.queryfromFavorite_Name(name_str);
         if (name_cursor.moveToFirst()) {
-        	button_add.setVisibility(View.GONE);        	
+        	button_add.setVisibility(View.GONE);
+        	button_delete.setVisibility(View.VISIBLE);
         }
         else{
         	button_delete.setVisibility(View.GONE);
+        	button_add.setVisibility(View.VISIBLE);
         }
         name_cursor.close();
         
