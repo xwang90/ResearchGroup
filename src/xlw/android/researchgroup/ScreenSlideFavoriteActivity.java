@@ -115,6 +115,14 @@ public class ScreenSlideFavoriteActivity extends FragmentActivity {
                 // See http://developer.android.com/design/patterns/navigation.html for more.
                 NavUtils.navigateUpTo(this, new Intent(this, MainActivity.class));
                 return true;
+                
+            case R.id.action_mail_send:
+            	
+            	Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            	emailIntent.setType("text/plain");
+            	startActivity(emailIntent);   
+            	
+            	return true;
 
             case R.id.action_previous:
                 // Go to the previous step in the wizard. If there is no previous step,
