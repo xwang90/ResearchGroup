@@ -40,8 +40,6 @@ import android.widget.Toast;
 
 import java.io.PrintStream;
 
-import com.example.android.animationsdemo.R;
-
 /**
  * A fragment representing a single step in a wizard. The fragment shows a dummy title indicating
  * the page number, along with some dummy text.

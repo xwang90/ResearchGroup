@@ -16,8 +16,6 @@
 
 package xlw.android.researchgroup;
 
-import com.example.android.animationsdemo.R;
-
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.SearchManager;

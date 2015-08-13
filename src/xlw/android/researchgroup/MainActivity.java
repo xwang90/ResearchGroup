@@ -16,8 +16,6 @@
 
 package xlw.android.researchgroup;
 
-//import android.R;
-import com.example.android.animationsdemo.R;
 
 import android.app.Activity;
 import android.app.ListActivity;
