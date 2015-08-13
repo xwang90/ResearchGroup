@@ -145,7 +145,7 @@ public class FavoriteDataSource {
   Cursor queryfromFavorite_Name(String Name){
 	  
 	  Cursor cursor = database.query(MySQLiteHelper.TABLE_FAVORITES,
-              allColumns, MySQLiteHelper.COLUMN_NAME + " = " + Name, null,
+              allColumns, MySQLiteHelper.COLUMN_NAME + " = '" + Name+"'", null,
               null, null, null);
 	  
 	  return cursor;

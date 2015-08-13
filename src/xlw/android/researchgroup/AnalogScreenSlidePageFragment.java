@@ -221,7 +221,7 @@ public class AnalogScreenSlidePageFragment extends Fragment {
         	  } 
         }); 
         
-        Cursor name_cursor=MainActivity.datasource.queryfromFavorite_Name("12");
+        Cursor name_cursor=MainActivity.datasource.queryfromFavorite_Name(name_str);
         if (name_cursor.moveToFirst()) {
         	button_add.setVisibility(View.GONE);        	
         }
