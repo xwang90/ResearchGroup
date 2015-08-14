@@ -127,6 +127,9 @@ public class FavoriteScreenSlidePageFragment extends Fragment {
     	final int ResearchArea=newFavorite.getResearchArea();
     	final int PageNumber=newFavorite.getPageNumber();
     	
+    	System.out.println("ResearchArea:"+ResearchArea);
+    	System.out.println("PageNumber:"+PageNumber);
+    	
     	Button button_add = (Button) rootView.findViewById(R.id.add);
     	Button button_delete = (Button) rootView.findViewById(R.id.delete);
     	button_add.setVisibility(View.GONE);
@@ -188,6 +191,17 @@ public class FavoriteScreenSlidePageFragment extends Fragment {
         
         TextView interest_textView =(TextView) rootView.findViewById(R.id.interest);
         interest_textView.setText(interest_str);
+        
+        ImageView image = (ImageView) rootView.findViewById(R.id.homepageicon);
+        image.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+            	Intent myIntent = new Intent(getActivity(), WebViewActivity.class);
+            	myIntent.putExtra("ResearchArea",ResearchArea);
+            	myIntent.putExtra("mPageNumber", PageNumber);
+            	myIntent.putExtra("element", 3);
+            	startActivity(myIntent); 
+            }
+        });
         
         
         
