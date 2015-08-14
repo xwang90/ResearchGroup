@@ -156,7 +156,7 @@ public class FavoriteScreenSlidePageFragment extends Fragment {
             	
             }
         };
-        department_ss.setSpan(department_clickableSpan,0,36,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        department_ss.setSpan(department_clickableSpan,0,department_str.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         TextView department_textView =(TextView) rootView.findViewById(R.id.department);
         department_textView.setText(department_ss);
@@ -180,7 +180,7 @@ public class FavoriteScreenSlidePageFragment extends Fragment {
             	
             }
         };
-        university_ss.setSpan(university_clickableSpan,0,19,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        university_ss.setSpan(university_clickableSpan,0,university_str.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         TextView university_textView =(TextView) rootView.findViewById(R.id.university);
         university_textView.setText(university_ss);
