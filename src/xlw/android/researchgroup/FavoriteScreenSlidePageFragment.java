@@ -29,9 +29,11 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -49,6 +51,8 @@ public class FavoriteScreenSlidePageFragment extends Fragment {
     /**
      * The argument key for the page number this fragment represents.
      */
+	
+	private static final String TAG = "FavoriteScreenSlidePageFragment";
     public static final String ARG_PAGE = "page";
     
     private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
@@ -119,22 +123,17 @@ public class FavoriteScreenSlidePageFragment extends Fragment {
         
         Favorite newFavorite = MainActivity.datasource.cursorToFavorite(cursor);
         
-        String name_str=newFavorite.getname().toString();
-    	String position_str=newFavorite.getposition().toString();
-    	String department_str=newFavorite.getdepartment().toString();
-    	String university_str=newFavorite.getuniversity().toString();
-    	String interest_str=newFavorite.getinterest().toString();
+        final String name_str=newFavorite.getname().toString();
+    	final String position_str=newFavorite.getposition().toString();
+    	final String department_str=newFavorite.getdepartment().toString();
+    	final String university_str=newFavorite.getuniversity().toString();
+    	final String interest_str=newFavorite.getinterest().toString();
     	final int ResearchArea=newFavorite.getResearchArea();
     	final int PageNumber=newFavorite.getPageNumber();
     	
     	System.out.println("ResearchArea:"+ResearchArea);
     	System.out.println("PageNumber:"+PageNumber);
-    	
-    	Button button_add = (Button) rootView.findViewById(R.id.add);
-    	Button button_delete = (Button) rootView.findViewById(R.id.delete);
-    	button_add.setVisibility(View.GONE);
-    	button_delete.setVisibility(View.GONE);
-        
+    	    	      
         TextView name_textView =(TextView) rootView.findViewById(R.id.name);
         name_textView.setText(name_str);
         
@@ -202,6 +201,65 @@ public class FavoriteScreenSlidePageFragment extends Fragment {
             	startActivity(myIntent); 
             }
         });
+        
+        final Button button_add = (Button) rootView.findViewById(R.id.add);
+        final Button button_delete = (Button) rootView.findViewById(R.id.delete);
+        button_add.setOnClickListener(new OnClickListener()
+        {
+        	  @Override
+        	  public void onClick(View v)
+        	  {
+        	    // do something
+        		button_add.setVisibility(View.GONE);
+                button_delete.setVisibility(View.VISIBLE);
+        		Favorite favorite = null;
+        		System.out.println("ADD");
+        	    Log.v(TAG, "ADD");
+        	    favorite = MainActivity.datasource.createFavorite("Favorite", 
+        	    		name_str, 
+        	    		position_str, 
+        	    		department_str, 
+        	    		university_str, 
+        	    		interest_str, 
+        	    		ResearchArea, PageNumber, 3);
+        	    
+        	  } 
+        }); 
+        
+        
+        button_delete.setOnClickListener(new OnClickListener()
+        {
+        	  @Override
+        	  public void onClick(View v)
+        	  {
+        	    // do something
+        		button_delete.setVisibility(View.GONE);
+                button_add.setVisibility(View.VISIBLE);
+        		Cursor cursor=null;
+        		System.out.println("DELETE");
+        	    Log.v(TAG, "DELETE");
+        	    cursor=MainActivity.datasource.queryfromFavorite_ResearchArea_PageNumber(ResearchArea,PageNumber);
+        	    cursor.moveToFirst();
+        	    Favorite favorite = MainActivity.datasource.cursorToFavorite(cursor);
+        	    MainActivity.datasource.deleteFavorite(favorite);
+        	    cursor.close();
+        	    
+        	    
+        	  } 
+        });
+        
+        Cursor name_cursor=MainActivity.datasource.queryfromFavorite_Name(name_str);
+        if (name_cursor.moveToFirst()) {
+        	button_add.setVisibility(View.GONE);
+        	button_delete.setVisibility(View.VISIBLE);
+        }
+        else{
+        	button_delete.setVisibility(View.GONE);
+        	button_add.setVisibility(View.VISIBLE);
+        }
+        name_cursor.close();
+        
+        
         
         
         
