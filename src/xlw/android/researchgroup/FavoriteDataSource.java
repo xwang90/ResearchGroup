@@ -151,6 +151,15 @@ public class FavoriteDataSource {
 	  return cursor;
   }
   
+ Cursor queryfromFavorite_Comment(String Comment){
+	  
+	  Cursor cursor = database.query(MySQLiteHelper.TABLE_FAVORITES,
+              allColumns, MySQLiteHelper.COLUMN_COMMENT + " = 'Favorite'", null,
+              null, null, null);
+	  
+	  return cursor;
+  }
+  
   
   
   

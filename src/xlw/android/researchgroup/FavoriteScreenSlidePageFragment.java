@@ -106,7 +106,7 @@ public class FavoriteScreenSlidePageFragment extends Fragment {
      
         //List<Favorite> favorites=MainActivity.datasource.getAllFavorites();
         
-        Cursor cursor = MainActivity.datasource.queryfromFavorite_Element(3);
+        Cursor cursor = MainActivity.datasource.queryfromFavorite_Comment("Favorite");
         
         //Cursor cursor = MainActivity.datasource.queryfromFavorite(mPageNumber+1);
         
