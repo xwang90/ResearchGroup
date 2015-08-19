@@ -87,6 +87,7 @@
         </activity>
         
         <activity android:name="xlw.android.researchgroup.ScreenSlideFavoriteActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/Favorite"
             android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName="xlw.android.researchgroup.MainActivity">
